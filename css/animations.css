@@ -1,0 +1,166 @@
+/* ============================================
+   ANIMATIONS & REVEAL EFFECTS
+   ============================================ */
+
+/* ===== Reveal on Scroll ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.reveal:nth-child(1) { transition-delay: 0.05s; }
+.reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal:nth-child(3) { transition-delay: 0.25s; }
+.reveal:nth-child(4) { transition-delay: 0.35s; }
+.reveal:nth-child(5) { transition-delay: 0.45s; }
+.reveal:nth-child(6) { transition-delay: 0.55s; }
+
+/* ===== Hero Entry Animations ===== */
+.hero-badge {
+  animation: fadeSlideDown 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s both;
+}
+
+.hero-greeting {
+  animation: fadeSlideDown 0.8s cubic-bezier(0.4,0,0.2,1) 0.3s both;
+}
+
+.hero-name {
+  animation: fadeSlideUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.4s both;
+}
+
+.hero-typewriter {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.55s both;
+}
+
+.hero-subtitle {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.65s both;
+}
+
+.hero-btns {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.75s both;
+}
+
+.hero-stats {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.85s both;
+}
+
+.hero-visual {
+  animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1) 0.5s both;
+}
+
+.scroll-indicator {
+  animation: fadeIn 1s ease 1.5s both;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== Navbar Slide In ===== */
+.navbar {
+  animation: navSlideDown 0.6s cubic-bezier(0.4,0,0.2,1) 0.1s both;
+}
+
+@keyframes navSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== Card Hover Glow Pulse ===== */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px var(--cyan-dim); }
+  50% { box-shadow: 0 0 40px var(--cyan-glow); }
+}
+
+/* ===== Scan Line Effect ===== */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #bf5fff, transparent);
+  animation: scanLine 4s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes scanLine {
+  0% { top: -5%; opacity: 1; }
+  100% { top: 105%; opacity: 0; }
+}
+
+/* ===== Neon Flicker (optional on logo) ===== */
+@keyframes neonFlicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.6; }
+  99% { opacity: 1; }
+}
+
+/* ===== Shimmer Effect ===== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-primary {
+  background-size: 200% auto;
+}
+
+/* ===== Mobile Nav Slide ===== */
+.nav-links.mobile-open {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(3, 7, 18, 0.97);
+  backdrop-filter: blur(20px);
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  z-index: 999;
+  animation: mobileNavIn 0.4s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+.nav-links.mobile-open .nav-link {
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+@keyframes mobileNavIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.avatar-core {
+  animation: float 6s ease-in-out infinite;
+}
