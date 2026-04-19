@@ -4,7 +4,6 @@ A dark, futuristic personal portfolio website built with pure HTML, CSS, and Jav
 
 ## 📁 File Structure
 
-```
 avani-portfolio/
 ├── index.html          ← Main HTML file (entry point)
 ├── css/
@@ -17,7 +16,6 @@ avani-portfolio/
 ├── assets/             ← Add your profile photo or other images here
 └── README.md           ← This file
 ```
-
 ## 🚀 How to Run
 
 ### Option 1: VS Code Live Server (Recommended)
