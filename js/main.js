@@ -182,30 +182,32 @@ document.addEventListener('DOMContentLoaded', () => {
   barFills.forEach(bar => barObserver.observe(bar));
 
   // ===== Contact Form =====
-  const form = document.getElementById('contact-form');
-  const successMsg = document.getElementById('form-success');
+  const contactForm = document.getElementById('contact-form');
+const formSuccess = document.getElementById('form-success');
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const originalText = btn.innerHTML;
-
-      btn.innerHTML = '<span>Sending...</span>';
-      btn.disabled = true;
-
-      // Simulate send (replace with actual EmailJS or backend)
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        form.reset();
-        successMsg.style.display = 'block';
-        setTimeout(() => {
-          successMsg.style.display = 'none';
-        }, 5000);
-      }, 1500);
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = contactForm.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  try {
+    const res = await fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { Accept: 'application/json' }
     });
+    if (res.ok) {
+      contactForm.reset();
+      formSuccess.style.display = 'block';
+      formSuccess.style.opacity = '1';
+      setTimeout(() => { formSuccess.style.display = 'none'; }, 5000);
+    } else {
+      alert('Could not send the message. Please email me directly.');
+    }
+  } catch (err) {
+    alert('Network error. Please email me directly.');
   }
+  btn.disabled = false;
+});
 
   // ===== Smooth scroll for nav links =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
